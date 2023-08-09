@@ -1,0 +1,30 @@
+<Configuration status="WARN">
+
+
+	<properties>
+		<property name="basePath">./logs</property>
+	</properties>
+	<Appenders>
+
+		<SystemPropertyArbiter propertyName="env"
+			propertyValue="dev">
+			<Console name="Out">
+				<PatternLayout pattern="%m%n" />
+			</Console>
+		</SystemPropertyArbiter>
+		<SystemPropertyArbiter propertyName="env"
+			propertyValue="prod">
+			<List name="Out">
+			</List>
+		</SystemPropertyArbiter>
+
+	</Appenders>
+	<Loggers>
+		<Logger name="org.apache.test" level="info" additivity="false">
+			<AppenderRef ref="Out" />
+		</Logger>
+		<Root level="info">
+			<AppenderRef ref="File" />
+		</Root>
+	</Loggers>
+</Configuration>
